@@ -1,0 +1,141 @@
+{% load static %}
+<footer class="bg-success text-center text-lg-start text-white pt-5">
+    <!-- Grid container -->
+    <div class="container p-2">
+        <!--Grid row-->
+        <div class="row my-4">
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <div
+                    class="rounded-circle bg-white shadow-1-strong d-flex align-items-center justify-content-center mb-4 mx-auto"
+                    style="width: 150px; height: 150px"
+                >
+                    <img
+                        src={% static 'images/icon.jpg' %}
+                        height="70"
+                        alt=""
+                        loading="lazy"
+                    />
+                </div>
+
+                <p class="text-center">
+                    FoodHub mong muốn trở thành người trợ lý nội trợ của các gia đình Việt Nam
+                </p>
+
+                <ul
+                    class="list-unstyled d-flex flex-row justify-content-center"
+                >
+                    <li>
+                        <a class="text-white px-2" href="#!">
+                            <i class="bi bi-facebook"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text-white px-2" href="#!">
+                            <i class="bi bi-instagram"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a class="text-white ps-2" href="#!">
+                            <i class="bi bi-youtube"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-4">Danh mục</h5>
+
+                <ul class="list-unstyled">
+                    {% for item in categories %}
+                        <li class="mb-2">
+                            <li><a class="text-white" href="{% url 'sanPhamTheoDanhMuc' item.slug %}">{{ item.name }}</a></li>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-2 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-4">VỀ CHÚNG TÔI</h5>
+
+                <ul class="list-unstyled">
+                    <li class="mb-2">
+                        <a href="#!" class="text-white">Về FoodHub - Thực phẩm sơ chế theo yêu cầu</a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#!" class="text-white"
+                            >Chính sách thanh toán</a
+                        >
+                    </li>
+                    <li class="mb-2">
+                        <a href="#!" class="text-white"
+                            >Điều khoản chính sách</a
+                        >
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-4">Chăm sóc khách hàng</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <p>
+                            <i class="fas fa-map-marker-alt pe-2"></i>Trung tâm trợ giúp
+                        </p>
+                    </li>
+                    <li>
+                        <p><i class="fas fa-phone pe-2"></i>Hướng dẫn mua hàng</p>
+                    </li>
+                    <li>
+                        <p>
+                            <i class="fas fa-envelope pe-2 mb-0"></i
+                            >Chính sách vận chuyển
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+            
+            <!--Grid column-->
+            <div class="col-lg-3 col-md-6 mb-4 mb-md-0">
+                <h5 class="text-uppercase mb-4">Liên hệ</h5>
+
+                <ul class="list-unstyled">
+                    <li>
+                        <p>
+                            <i class="fas fa-map-marker-alt pe-2"></i>Điện thoại: 0888.30.15.18.
+                        </p>
+                    </li>
+                    <li>
+                        <p><i class="fas fa-phone pe-2"></i>Email: contact@foodhub.vn.</p>
+                    </li>
+                    <li>
+                        <p>
+                            <i class="fas fa-envelope pe-2 mb-0"></i
+                            >Địa chỉ: Số 79, ngõ 4, đường Nguyễn Trãi, Thành phố Huế.
+                        </p>
+                    </li>
+                </ul>
+            </div>
+            <!--Grid column-->
+        </div>
+        <!--Grid row-->
+    </div>
+    <!-- Grid container -->
+
+    <!-- Copyright -->
+    <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2)">
+        © 2023 Bản quyền thuộc về:
+        <a class="text-white" href="/"
+            >duy9117@gmail.com</a
+        >
+    </div>
+    <!-- Copyright -->
+</footer>

@@ -1,0 +1,77 @@
+{% extends "store/layouts/form.html" %}
+{% block content %}
+{% load static %}
+    <div class="container-fluid" style="background-image: url({% static '/images/background3.jpg' %}) ">
+        <div class="row">
+            <div class="col-lg-8 col-xl-6 mx-auto">
+                <div class="card flex-row my-5 border-0 shadow rounded-3 overflow-hidden">
+                    <div class="card-img-left d-none d-md-flex">
+                        <!-- Background image for card set in CSS! -->
+                    </div>
+                    <div class="card-body p-4 p-sm-5">
+                        <h5 class="card-title text-center mb-5 text-success fw-bold fs-2">Đăng ký tài khoản FoodHub</h5>
+                        <form method="POST">
+                            {% csrf_token %}
+                            <div class="form-floating mb-3">
+                                {{form.username}}
+                                {% if form.errors.username %}
+                                    <label for="floatingInputUsername" class="text-danger">{{form.errors.username}}</label>
+                                {% else %}
+                                    <label for="floatingInputUsername">Tên người dùng</label>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                {{form.email}}
+                                {% if form.errors.email %}
+                                    <label for="floatingInputEmail" class="text-danger">{{form.errors.email}}</label>
+                                {% else %}
+                                    <label for="floatingInputEmail">Địa chỉ email</label>
+                                {% endif %}
+                            </div>
+
+                            <hr>
+
+                            <div class="form-floating mb-3">
+                                {{form.password1}}
+                                {% if form.errors.password1 %}
+                                    <label for="floatingPassword" class="text-danger">{{form.errors.password1}}</label>
+                                {% else %}
+                                    <label for="floatingPassword">Mật khẩu</label>
+                                {% endif %}
+                            </div>
+
+                            <div class="form-floating mb-3">
+                                {{form.password2}}
+                                {% if form.errors.password2 %}
+                                    <label for="floatingPasswordConfirm" class="text-danger">{{form.errors.password2}}</label>
+                                {% else %}
+                                    <label for="floatingPasswordConfirm">Nhập lại mật khẩu</label>
+                                {% endif %}
+                            </div>
+                            <div class="d-grid mb-2">
+                                <button class="btn btn-lg btn-success btn-login fw-bold" type="submit">Đăng ký</button>
+                            </div>
+
+                            <a class="d-block text-center fw-bold text-success mt-2 small" href={% url 'dangNhap' %}>Đã có tài khoản? Đăng nhập ngay</a>
+
+                            <hr class="my-4">
+
+                            <div class="d-grid mb-2">
+                                <button class="btn btn-lg btn-google btn-login text-success" type="submit">
+                                <i class="bi bi-facebook text-success me-2"></i> Đăng nhập với Google
+                                </button>
+                            </div>
+
+                            <div class="d-grid">
+                                <button class="btn btn-lg btn-facebook btn-login text-success" type="submit">
+                                <i class="bi bi-google text-success me-2"></i> Đăng nhập với Facebook
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock content %}

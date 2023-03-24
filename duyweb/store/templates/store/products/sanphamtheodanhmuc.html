@@ -1,0 +1,120 @@
+{% extends "store/layouts/main.html" %}
+{% block content %}
+<div class="container">
+    <div class="title my-5 text-success text-center">
+        <h1>Các sản phẩm thuộc {{ category_name.name }}</h1>
+    </div>
+
+    <div class="py-3 px-3 mb-5 bg-success text-white rounded">
+        <div class="container">
+            <a class="text-white" href="{% url 'trangChu' %}">Trang chủ </a>/
+            <a class="text-white" href="{% url 'danhMuc' %}">Tất cả danh mục </a>/
+            <a class="text-white" href="{% url 'sanPhamTheoDanhMuc' category_name.slug %}">{{ category_name.name }}</a>
+        </div>
+    </div>
+
+    <div class="row product-data">
+                {% csrf_token %}
+                        <input type="hidden" value="{{ item.id }}" class="prod_id">
+                {% for item in page_obj %}
+                    <div class="col-md-3 mb-4" style="position: relative;">
+                        
+                        <a href="{% url 'chiTietSanPham' item.category.slug item.slug %}" class="">
+                            <div class="card border-success hover-card" style="height: 100%; justify-content: space-between">
+                                <!-- Sale badge-->
+                                {% if item.tag %}
+                                    <div
+                                    class="badge bg-danger text-white fs-6 text-center position-absolute"
+                                    style="top: 0.5rem; right: 0.5rem; padding: 0.5rem 0.8rem; margin: auto"
+                                    >
+                                        {{item.tag}}
+                                    </div>
+                                {% endif %}
+                                
+                                <!-- Product image-->
+                                <img
+                                    class="card-img-top"
+                                    src={{ item.product_image.url }}
+                                    height="160px"
+                                />
+                                <!-- Product details-->
+                                <div class="card-body p-4">
+                                    <div class="text-center">
+                                        <!-- Product name-->
+                                        <h5 class="fw-bolder text-success title">{{ item.name }}</h5>
+                                        <!-- Product reviews-->
+                                        <div
+                                            class="d-flex justify-content-center small text-warning mb-2"
+                                        >
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                            <div class="bi-star-fill"></div>
+                                        </div>
+                                        <!-- Product price-->
+                                        <div class="d-flex align-items-center justify-content-center mb-2">
+                                            <span class="text-muted me-2 fs-6 text-decoration-line-through">
+                                            {{ item.original_price | stringformat:'d' }} <small style="font-size: 16px">đ</small>
+                                            </span>
+                                            <span class="text-success fs-5 fw-bold">
+                                                {{ item.selling_price | stringformat:'d' }} <small style="font-size: 16px">đ</small>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Product actions-->
+                                <div
+                                    class="card-footer p-4 pt-0 border-top-0 bg-transparent"
+                                >
+                                </div>
+                            </div>
+                        </a>
+                        <div class="text-center">
+                            <button class="btn btn-success mt-auto btn-product" style="position: absolute; bottom: 1rem; left: 3rem;" type="button">
+                                <i class="bi bi-cart-plus me-2"></i>
+                                Thêm vào giỏ hàng
+                            </button>
+                        </div>
+                    </div>
+                {% endfor %}
+
+                <nav aria-label="...">
+                    <ul class="pagination justify-content-center">
+                        {% if page_obj.has_previous %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'sanPhamTheoDanhMuc' category_name.slug %}?page=1">&laquo; First</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'sanPhamTheoDanhMuc' category_name.slug %}?page={{ page_obj.previous_page_number }}">Previous</a>
+                            </li>
+                        {% endif %}
+
+                        {% for num_page in page_obj.paginator.page_range %}
+                            {% if page_obj.number == num_page %}
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="{% url 'sanPhamTheoDanhMuc' category_name.slug %}?page={{num_page}}">{{num_page}}</a>
+                                </li>
+                            {% else %}
+                                <li class="page-item" aria-current="page">
+                                    <a class="page-link" href="{% url 'sanPhamTheoDanhMuc' category_name.slug %}?page={{num_page}}">{{num_page}}</a>
+                                </li>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        {% if page_obj.has_next %}
+                            <li class="page-item">
+                            <a class="page-link" href="{% url 'sanPhamTheoDanhMuc' category_name.slug %}?page={{ page_obj.next_page_number }}">Next</a>
+                            </li>
+                            <li class="page-item">
+                            <a class="page-link" href="{% url 'sanPhamTheoDanhMuc' category_name.slug %}?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a>
+                            </li>
+                        {% endif %}
+                        
+                    </ul>
+                </nav>
+</div>
+</div>
+
+
+{% endblock content %}

@@ -1,0 +1,27 @@
+.hover-card:hover {
+  background-color: #198754;
+  transition: all 0.2s linear;
+  color: #fff !important;
+}
+
+.hover-card:hover .card-body .title {
+  color: #fff !important;
+}
+
+.hover-card:hover ~ .btn-product {
+  border-color: #fff !important;
+  color: #fff !important;
+}
+
+.hover-card:hover p,
+.hover-card:hover span {
+  color: #fff !important;
+}
+
+a {
+  text-decoration: none;
+}
+
+.dangky-background {
+  background: url("../images/background1.webp") center cover / no-repeat;
+}
